@@ -1,3 +1,5 @@
+package Punto1;
+
 import java.nio.charset.CodingErrorAction;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -31,7 +33,7 @@ public class Venta {
 					"jdbc:postgresql://127.0.0.1:5432/ventas", "postgres", "");
 			System.out.println(conn.getClass().getCanonicalName());
 			Statement stmt = conn.createStatement();
-			
+			System.out.println();
 			String sql = 
 					"SELECT vendedor, AVG(total) AS promedio, COUNT(total) AS cantidad" +
 						    " FROM venta " +
@@ -40,8 +42,8 @@ public class Venta {
 			System.out.println(sql);
 			ResultSet rs1 = stmt.executeQuery(sql);
 			
-			System.out.println();
 			System.out.println("vend   | promedio | cantidad_ventas");
+			System.out.println("-----------------------------------");
 			while(rs1.next()){
 				String codVendedor = rs1.getString("vendedor");
 				double total = rs1.getDouble("promedio");
@@ -56,17 +58,21 @@ public class Venta {
 							"GROUP BY cliente "+
 							"ORDER BY Cantidad DESC " +
 							"LIMIT 10 ";
+			System.out.println();
 			System.out.println(sql);
 			rs1 = stmt.executeQuery(sql);
+
+			System.out.println("| cliente | cantidad_compras");
+			System.out.println("----------------------------");
 			while(rs1.next()){
 				String codCliente = rs1.getString("cliente");
 				int contador = rs1.getInt("Cantidad");
 				
-				System.out.println(codCliente + "    | " +  contador);
+				System.out.println("|"+codCliente + " | " +  contador);
 			}
 			System.out.println();
 			sql = 
-					"SELECT l.nombre AS nombre, COUNT(v.cliente) AS cantidad " +
+					"SELECT rpad(l.nombre, 27, ' ') AS nombre, COUNT(v.cliente) AS cantidad " +
 					"FROM venta v " +
 						"INNER JOIN cliente c " +
 						"ON v.cliente = c.numero_documento " +
@@ -77,12 +83,13 @@ public class Venta {
 			
 			System.out.println(sql);
 			rs1 = stmt.executeQuery(sql);
-			
+			System.out.println("| Localidad                     | cantidad_ventas");
+			System.out.println("-----------------------------------------------");
 			while(rs1.next()){
 				String NomLoca = rs1.getString("nombre");
 				int contador = rs1.getInt("cantidad");
 				
-				System.out.println(NomLoca + "    | " +  contador);
+				System.out.println("|"+NomLoca + "    | " +  contador);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
