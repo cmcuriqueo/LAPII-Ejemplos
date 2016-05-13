@@ -65,10 +65,10 @@
             <td colspan="4" style="text-align: center">busqueda</td>
             </tr>
           <tr>
-            <td align = "center"><img src="mesa.jpg" alt="imagen de una mesa" width="100" ><b>MESA</b> </td>
-            <td align = "center"><img src="silla.jpg" alt="imagen de una silla" width="100"><b>SILLA</b> </td>
-            <td><img src="mesa.jpg" alt="imagen de una mesa" width="100"></td>
-            <td><img src="mesa.jpg" alt="imagen de una mesa" width="50"></td>
+            <td align = "center"><img src="/img/mesa.jpg" alt="imagen de una mesa" width="100" ><b>MESA</b> </td>
+            <td align = "center"><img src="/img/silla.jpg" alt="imagen de una silla" width="100"><b>SILLA</b> </td>
+            <td><img src="x.jpg" alt="imagen de una caja" width="100"></td>
+            <td><img src="x.jpg" alt="imagen de algo" width="50"></td>
           </tr>
           <tr>
             <td>foto5</td>
