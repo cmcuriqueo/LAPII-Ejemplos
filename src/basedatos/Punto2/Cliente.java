@@ -1,6 +1,12 @@
 package Punto2;
 
+import java.sql.Connection;
 import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Collection;
+import java.util.LinkedList;
 
 
 /*
@@ -85,5 +91,29 @@ public class Cliente {
 	@Override
 	public String toString(){
 		return this.getNombre() + " " + this.getApellido();
+	}
+	
+	public static Collection<Cliente> getClientes() throws SQLException {
+		Collection<Cliente> clientes = new LinkedList<Cliente>();
+		Connection conn = null;
+		try {
+			conn = Conexion.getConexion();
+			String sql = 
+					"SELECT numero_documento, apellido, nombre, fecha_nacimiento, sexo, " +
+							"domicilio" +
+					" FROM cliente ";
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			ResultSet rs1 = pstmt.executeQuery();
+			while(rs1.next()){
+				clientes.add(new Cliente(rs1.getInt("numero_documento"), rs1.getString("apellido"), 
+						rs1.getString("nombre"), rs1.getDate("fecha_nacimiento"), rs1.getString("sexo"), 
+						rs1.getString("domicilio")));
+			}
+		} catch (SQLException e) {
+			throw e;
+		} finally {
+			Conexion.closeConexion(conn);
+		}
+		return clientes;
 	}
 }

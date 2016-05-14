@@ -30,7 +30,7 @@ public class Venta {
 		
 		try {
 			conn = DriverManager.getConnection(
-					"jdbc:postgresql://127.0.0.1:5432/ventas", "postgres", "");
+					"jdbc:postgresql://127.0.0.1:5432/ventas", "postgres", "carrasco");
 			System.out.println(conn.getClass().getCanonicalName());
 			Statement stmt = conn.createStatement();
 			System.out.println();
